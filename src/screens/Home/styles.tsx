@@ -27,10 +27,11 @@ export default StyleSheet.create({
         backgroundColor:"#F2F2F2", 
         borderRadius: 6,
         borderWidth: 0.5,
-        borderColor: "##808080"
+        borderColor: "##808080",
+        width: 289,
+        marginRight: 4,
     },
     form: {
-        width: "100%",
         flexDirection: "row",
         marginTop: 18,
         marginBottom: 36,
@@ -38,4 +39,13 @@ export default StyleSheet.create({
         top: "11.5%",
         position: "absolute"
     },
+    button:{
+        backgroundColor:"#31C667",
+        height: 56,
+        width: 56, 
+        borderRadius: 6,
+        alignItems: "center",
+        justifyContent: "center",
+    },
+  
 });
