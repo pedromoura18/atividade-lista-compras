@@ -21,6 +21,7 @@ export default function Product({ data, onRemove, onToggle }: Props) {
        style={styles.checkIcon}
        />
        </TouchableOpacity>
+       
       <Text style={[styles.itemText, data.done && styles.itemTextDone]}>
         {data.name}
       </Text>
