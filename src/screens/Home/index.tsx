@@ -1,3 +1,13 @@
+
+ {/* Professor, tive que criar um novo projeto pois o antigo estava
+  dando muito problema de versão, no pc da facul funcionava bem mas aqui
+  no meu nao estava funcionando, estava dando muitos erros, quebrei a cabeça
+  para tentar resolver porém não consegui, dava erros de versões e tudo mais
+  só consegui resolver criando um novo projeto, e quando fui comitar esse novo 
+  projeto, ele substituiu os comits antigos, pois usei o comando para forçar ele
+  a comitar e ele acabou excluindo os comits feitos em aula, eram 6 comits.
+  Se esta vendo esta mensagem é porque não consegui recuperar os comits antigos. */}
+
 import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
 import styles from "./styles";
