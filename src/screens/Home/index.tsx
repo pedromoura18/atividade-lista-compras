@@ -39,7 +39,7 @@ export default function Home() {
   function handleRemoveProduct(id: string) {
     setProducts((prev) => prev.filter((item) => item.id !== id));
   }
-
+  // Função para alternar status feito/não feito (usei map para atualizar o item)
   function handleToggleDone(id: string) {
     setProducts((prev) =>
       prev.map((item) =>
@@ -102,6 +102,7 @@ export default function Home() {
         </View>
       ) : (
         <FlatList
+          // Passando dados e funções como (props) para o componente filho
           data={products}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
