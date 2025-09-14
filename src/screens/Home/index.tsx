@@ -9,53 +9,85 @@
   Se esta vendo esta mensagem é porque não consegui recuperar os comits antigos. */}
 
 import React, { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, Image, FlatList } from "react-native";
 import styles from "./styles";
+import Product from "../../components/Product";
+
+type ProductType = {
+  id: string;
+  name: string;
+  done: boolean;
+};
 
 export default function Home() {
-  const [products, setProducts] = useState<string[]>([]);
+  const [products, setProducts] = useState<ProductType[]>([]);
   const [newProduct, setNewProduct] = useState("");
+
+  function handleAddProduct() {
+    if (!newProduct.trim()) return;
+
+    const data: ProductType = {
+      id: String(Date.now()),
+      name: newProduct,
+      done: false,
+    };
+
+    setProducts((prev) => [...prev, data]);
+    setNewProduct("");
+  }
+
+  function handleRemoveProduct(id: string) {
+    setProducts((prev) => prev.filter((item) => item.id !== id));
+  }
+
+  function handleToggleDone(id: string) {
+    setProducts((prev) =>
+      prev.map((item) =>
+        item.id === id ? { ...item, done: !item.done } : item
+      )
+    );
+  }
 
   return (
     <View style={styles.container}>
-      
       <View style={styles.top}>
         <Text style={styles.title}>Lista de Compras</Text>
       </View>
 
-    
       <View style={styles.form}>
         <TextInput
           style={styles.input}
           placeholder="Adicione um novo produto"
           value={newProduct}
           placeholderTextColor="#BDBABA"
-          keyboardType="default"
           onChangeText={setNewProduct}
         />
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={handleAddProduct}>
           <Image source={require("../../../assets/plus.png")} />
         </TouchableOpacity>
       </View>
 
-    <View style={styles.bottom}>
-      <View style={styles.contadorContainer}>
-        <View style={styles.contadorItem}>
-          <Text style={[styles.contadorTexto, styles.produtos]}>Produtos</Text>
-          <Text style={styles.contadorNumero}>{products.length}</Text>
-        </View>
+      <View style={styles.bottom}>
+        <View style={styles.contadorContainer}>
+          <View style={styles.contadorItem}>
+            <Text style={[styles.contadorTexto, styles.produtos]}>Produtos</Text>
+            <Text style={styles.contadorNumero}>
+              {products.filter((p) => !p.done).length}
+            </Text>
+          </View>
 
-        <View style={styles.contadorItem}>
-          <Text style={[styles.contadorTexto, styles.finalizados]}>
-            Finalizados
-          </Text>
-          <Text style={styles.contadorNumero}>0</Text>
+          <View style={styles.contadorItem}>
+            <Text style={[styles.contadorTexto, styles.finalizados]}>
+              Finalizados
+            </Text>
+            <Text style={styles.contadorNumero}>
+              {products.filter((p) => p.done).length}
+            </Text>
+          </View>
         </View>
       </View>
-      </View>
 
-      
-      {products.length === 0 && (
+      {products.length === 0 ? (
         <View style={styles.containerVazio}>
           <Image
             source={require("../../../assets/shopping_list.png")}
@@ -68,6 +100,18 @@ export default function Home() {
             Adicione produtos e organize sua lista de compras
           </Text>
         </View>
+      ) : (
+        <FlatList
+          data={products}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <Product
+              data={item}
+              onRemove={() => handleRemoveProduct(item.id)}
+              onToggle={() => handleToggleDone(item.id)}
+            />
+          )}
+        />
       )}
     </View>
   );

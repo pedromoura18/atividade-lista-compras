@@ -117,32 +117,26 @@ export default StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "#fff",
-    padding: 12,
-    marginBottom: 8,
-    borderRadius: 6,
-    justifyContent: "space-between",
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: "#808080",
+    paddingVertical: 15,
+    paddingHorizontal: 16,
+    marginBottom: 20,
+    marginHorizontal: 22.5,
   },
-  checkContainer: {
-    width: 24,
-    height: 24,
-    borderRadius: 12,
-    borderWidth: 2,
-    borderColor: "green",
-    alignItems: "center",
-    justifyContent: "center",
+  checkButton: {
     marginRight: 12,
   },
-  check: {
-    width: 12,
-    height: 12,
-    borderRadius: 6,
-  },
-  checked: {
-    backgroundColor: "green",
+
+  checkIcon: {
+    width: 24,
+    height: 24,
+    resizeMode: "contain",
   },
   itemText: {
     flex: 1,
-    fontSize: 16,
+    fontSize: 17,
     color: "#000",
   },
   itemTextDone: {
