@@ -121,14 +121,16 @@ export default StyleSheet.create({
     borderWidth: 1,
     borderColor: "#808080",
     paddingVertical: 15,
+    paddingLeft: 12,
+    paddingRight: 8,
     paddingHorizontal: 16,
-    marginBottom: 20,
+    marginBottom: 8,
     marginHorizontal: 22.5,
+    minHeight: 56,
   },
   checkButton: {
     marginRight: 12,
   },
-
   checkIcon: {
     width: 24,
     height: 24,
@@ -136,8 +138,9 @@ export default StyleSheet.create({
   },
   itemText: {
     flex: 1,
-    fontSize: 17,
+    fontSize: 16,
     color: "#000",
+    marginLeft: -2,
   },
   itemTextDone: {
     textDecorationLine: "line-through",
